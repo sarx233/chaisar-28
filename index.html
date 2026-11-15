@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Untuk Orang yang ku cintai 💖</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- OVERLAY PEMICU MUSIK (tipis, tidak ganggu layout) -->
+<div id="musicOverlay">
+  <div class="music-pill">🔊 ketuk untuk memutar lagu</div>
+</div>
+
+<!-- LAYAR 1: EFEK KETIKAN -->
+<div id="screenTyping" class="screen active">
+  <h1 id="typedText" class="typed"></h1>
+  <span class="cursor">|</span>
+</div>
+
+<!-- LAYAR 2: LOVE + TAP -->
+<div id="screenLove" class="screen">
+  <div class="big-heart">❤️</div>
+  <p class="tap-hint">ketuk layar</p>
+</div>
+
+<!-- LAYAR 3: SLIDESHOW 3 FOTO + TEKS -->
+<div id="screenSlides" class="screen">
+
+  <div class="slide active">
+    <div class="slide-card">
+      <img src="WhatsApp Image 2026-11-15 at 19.48.34.jpeg" alt="Foto 1">
+      <p class="slide-text">
+        Hal pertama yang aku sadari dari kamu bukan soal wajah atau senyummu,
+        tapi soal bagaimana kamu bikin hari biasa terasa nggak biasa.
+        Sejak kenal kamu, hal-hal kecil jadi lebih berwarna.
+      </p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-card">
+      <img src="WhatsApp Image 2026-11-15 at 19.49.10.jpeg" alt="Foto 2">
+      <p class="slide-text">
+        Nggak pernah kepikiran bakal sedekat ini sama seseorang.
+        Kamu bukan cuma tempat cerita, tapi juga tempat aku pulang
+        setelah hari yang panjang dan melelahkan.
+      </p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-card">
+      <img src="WhatsApp Image 2026-11-15 at 19.48.43.jpeg" alt="Foto 3">
+      <p class="slide-text">
+        Kalau boleh minta satu hal, aku mau waktu berhenti sebentar
+        di momen-momen kayak gini. Biar aku bisa lebih lama
+        mensyukuri keberadaan kamu di hidup aku.
+      </p>
+    </div>
+  </div>
+
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+
+</div>
+
+<!-- LAYAR 4: PESAN SYUKUR -->
+<div id="screenMessage" class="screen">
+  <div class="message-inner">
+    <p id="messageText" class="message-text"></p>
+    <div class="message-heart">💖</div>
+  </div>
+</div>
+
+<!-- LAYAR 5: TERIMA KASIH + STIKER -->
+<div id="screenThanks" class="screen">
+  <h1 class="thanks-title">Terima Kasih 💕</h1>
+  <p class="thanks-sub">Makasih udah baca sampai sini ya 🤍</p>
+  <div class="sticker-stage" id="stickerStage"></div>
+</div>
+
+<!-- HUJAN LOVE -->
+<div id="loveRain"></div>
+
+<!-- MUSIK -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="Virgoun - Surat Cinta Untuk Starla (Official Lyric Video).mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>

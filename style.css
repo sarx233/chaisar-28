@@ -1,0 +1,346 @@
+/* ===== RESET & DASAR ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #12000a;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ===== OVERLAY PEMICU MUSIK ===== */
+#musicOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(10, 0, 5, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+}
+#musicOverlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.music-pill {
+  background: rgba(255, 77, 136, 0.95);
+  color: #fff;
+  padding: 14px 26px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 0 30px rgba(255, 46, 116, 0.8);
+  animation: pulsePill 1.6s infinite;
+}
+@keyframes pulsePill {
+  50% { transform: scale(1.06); box-shadow: 0 0 45px rgba(255, 46, 116, 1); }
+}
+
+/* ===== SISTEM LAYAR ===== */
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+  z-index: 2;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.screen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== LAYAR 1: KETIKAN ===== */
+#screenTyping {
+  background: radial-gradient(circle at center, #2a0014 0%, #0d0005 100%);
+  padding: 20px 25px;
+  text-align: center;
+}
+.typed {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #ffd6e7;
+  text-shadow: 0 0 12px rgba(255, 105, 180, 0.8);
+  display: inline;
+}
+.cursor {
+  font-size: 28px;
+  color: #ff4d88;
+  animation: blink 0.7s infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ===== LAYAR 2: LOVE ===== */
+#screenLove {
+  background: radial-gradient(circle at center, #2a0014 0%, #0d0005 100%);
+  padding: 20px;
+}
+.big-heart {
+  font-size: 120px;
+  animation: heartbeat 1.2s infinite;
+  filter: drop-shadow(0 0 25px #ff2e74);
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.15); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.1); }
+}
+.tap-hint {
+  margin-top: 20px;
+  font-size: 15px;
+  color: #ffb3cc;
+  letter-spacing: 2px;
+  text-transform: lowercase;
+  animation: fadePulse 1.8s infinite;
+}
+@keyframes fadePulse { 50% { opacity: 0.35; } }
+
+/* ===== LAYAR 3: SLIDESHOW ===== */
+#screenSlides {
+  background: radial-gradient(circle at center, #1a000d 0%, #080004 100%);
+  justify-content: flex-start;
+  padding: 25px 18px 80px;
+}
+.slide {
+  display: none;
+  width: 100%;
+  max-width: 360px;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  animation: slideFadeIn 0.6s ease forwards;
+}
+.slide.active { display: flex; }
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.slide-card {
+  width: 100%;
+  background: #fff;
+  border-radius: 20px;
+  padding: 10px 10px 0;
+  box-shadow:
+    0 25px 40px -12px rgba(255, 46, 116, 0.5),
+    0 12px 24px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.65);
+  overflow: hidden;
+  transform: rotateX(3deg);
+  transform-style: preserve-3d;
+}
+.slide-card img {
+  width: 100%;
+  height: auto;
+  max-height: 50vh;
+  object-fit: cover;
+  display: block;
+  border-radius: 14px;
+}
+.slide-text {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: #b1004d;
+  text-align: center;
+  padding: 16px 12px 20px;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+/* ===== INDIKATOR TITIK ===== */
+.dots {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+  pointer-events: none;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background 0.4s, transform 0.4s;
+}
+.dot.active {
+  background: #ff4d88;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px #ff4d88;
+}
+
+/* ===== HUJAN LOVE ===== */
+#loveRain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+.rain-heart {
+  position: absolute;
+  top: -40px;
+  font-size: 22px;
+  animation: fall linear forwards;
+  filter: drop-shadow(0 0 6px rgba(255, 46, 116, 0.9));
+}
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===== LAYAR 4: PESAN SYUKUR ===== */
+#screenMessage {
+  background: radial-gradient(circle at center, #1a000d 0%, #080004 100%);
+  padding: 30px;
+  text-align: center;
+}
+.message-inner {
+  max-width: 360px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.message-inner.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.message-text {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #ffd6e7;
+  text-shadow: 0 0 14px rgba(255, 105, 180, 0.55);
+  white-space: pre-line;
+}
+.message-heart {
+  margin-top: 28px;
+  font-size: 38px;
+  animation: heartbeat 1.4s infinite;
+  filter: drop-shadow(0 0 18px #ff2e74);
+}
+
+/* ===== LAYAR 5: TERIMA KASIH ===== */
+#screenThanks {
+  background: radial-gradient(circle at center, #2a0014 0%, #0d0005 100%);
+  padding: 30px 20px;
+  text-align: center;
+  overflow: hidden;
+}
+.thanks-title {
+  font-size: 34px;
+  font-weight: 800;
+  color: #ffd6e7;
+  text-shadow: 0 0 18px rgba(255, 105, 180, 0.9);
+  animation: titlePop 0.9s ease-out forwards, titleGlow 2s infinite 0.9s;
+  opacity: 0;
+  transform: scale(0.5);
+  position: relative;
+  z-index: 2;
+}
+@keyframes titlePop { to { opacity: 1; transform: scale(1); } }
+@keyframes titleGlow { 50% { text-shadow: 0 0 30px rgba(255, 46, 116, 1); } }
+.thanks-sub {
+  margin-top: 14px;
+  font-size: 15px;
+  color: #ffb3cc;
+  opacity: 0;
+  animation: fadeUp 1s ease-out 0.6s forwards;
+  position: relative;
+  z-index: 2;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== STIKER LUCU ===== */
+.sticker-stage {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.sticker {
+  position: absolute;
+  font-size: 38px;
+  animation: bounceAround linear infinite;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+}
+@keyframes bounceAround {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); }
+  25%  { transform: translateY(-18px) rotate(10deg) scale(1.1); }
+  50%  { transform: translateY(0) rotate(0deg) scale(1); }
+  75%  { transform: translateY(-10px) rotate(-10deg) scale(1.05); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+.sticker-fall {
+  position: absolute;
+  top: -50px;
+  font-size: 30px;
+  animation: stickerFall linear forwards;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+}
+@keyframes stickerFall {
+  to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===== MEDIA QUERY: LAYAR PENDEK ===== */
+@media (max-height: 650px) {
+  #screenSlides { padding: 15px 15px 70px; }
+  .slide-card img { max-height: 38vh; }
+  .slide-text { font-size: 13px; padding: 12px 10px 16px; line-height: 1.55; }
+  .big-heart { font-size: 90px; }
+  .typed { font-size: 22px; }
+  .message-text { font-size: 16px; }
+  .thanks-title { font-size: 28px; }
+}
+/* ===== TOMBOL MUSIK MELAYANG ===== */
+#musicBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(255, 77, 136, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(255, 46, 116, 0.6);
+  cursor: pointer;
+  animation: pulseBtn 1.5s infinite;
+}
+#musicBtn.playing {
+  animation: spinDisc 3s linear infinite;
+  background: #d63384;
+}
+@keyframes pulseBtn {
+  50% { transform: scale(1.1); }
+}
+@keyframes spinDisc {
+  100% { transform: rotate(360deg); }
+}
